@@ -1,4 +1,4 @@
-= Configuring Terminals
+= Configuring Web Pages
 
 One of the most common elements used, particularly with command line-centric labs are Terminals, or _"ttys"_. In this lab, we will be configuring several terminals, each with a different purpose.
 

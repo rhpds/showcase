@@ -1,51 +1,33 @@
 = {lab_name}
 
-The `lab_name` var, known as an asciidoc attribute, above was set in `./content/antora.yml` and can be used to set the lab_name or title of your content.
-You are both free to change its value and if you prefer to use a different var name, you can change the value of `lab_name`, for example to `title` in `./content/antora.yml` and then reference it in your content as `\{title}`.
-me
 
-== Variables
+Welcome to the *Showcase "Lab"*, which is not a lab at all, but rather a showcase for what we can do both with the Showroom role, and also with Asciidoc, and in particular via the use of the integrated Antora toolchain.
+In the following modules, we will show how to:
 
-Other vars can also be set there, such as `ssh_user` and `ssh_password`, and referenced inline in the lab content by using the `\{foo}` syntax.
+* Setup your `showroom` vars
+** Configure Showroom to actually deploy your lab, workshop, or demo
+* Extend your lab with additional services
+** Web-based Terminal windows (ssh, bash, etc)
+** Iframe windows (for web-based apps, etc)
+** Consoles (OpenShift, Ansible Automation Controller, etc)
+** Web-based IDEs (Visual Studio Code, Jupyter Labs, etc)
+* Work with Antora and the pre-built Showroom Content Templates
 
-This is another var, or asciidoc attribute, from `./content/antora.yml` {my_var}
+| NOTE: Some services are not available yet but creating new Services will be covered and your labs etc can also reference consoles and services that open in *other* browser tabs eg for non-iFrame friendly content,
 
-== Writing your lab
+Throughout the rest of these modules we will refer to your content as "your lab" in this document, though it can equally be a workshop, demo, or anything else you want to deploy via Showroom.
 
-Whatever type of content you are writing we'll refer to your *content* as "your lab" in this document.
+[#getting-started]
+== Getting started
 
-=== Lab structure
+The first thing you need to do is to set up your `showroom` vars, and create your repo. This module covers deploying a showroom-based lab to a VM or instance, typically a `bastion` host, but it could be any VM or instance that you have access to.
 
+The first thing you need to do is to set up your `showroom` vars, and create your repo. This module covers deploying a showroom based lab to a VM or instance, typically a `bastion` host, but it could be any VM or instance that you have access to.
 
-Wether you are writing a lab
+=== Showroom Lab Templates
 
-* First, we will build a monolithic application already compiled as RPM packages and put it into a container. This will allow us to deploy the application, copy it between machines, and update it separately from the operating system. This process affords us a portable and easily maintained component instead of tightly coupling the application with your operating system maintenance.
+The Showroom Lab Templates are a set of pre-built templates that you can use to quickly get started with your lab, workshop, or demo. They are designed to be used with the Showroom role, and are built using Antora, which is a static site generator for creating documentation sites from AsciiDoc content.
 
-* In closing we will build a second container on a different operating system version that makes an application not packaged into RPMs. This will be similar to a web application deployment, positioning the correct files at the right locations. To do this, we will pull a project from GitHub and position the component files within our container image. The purpose of this is to achieve a portable application container that can deploy on several different versions of Red Hat Enterprise Linux. This also provides the benefit of decoupling your application maintenance, which would all happen by building new containers versus operating system maintenance. The container is no longer reliant on the operating system installed on the machine where the application is deployed.
-
-
-. Now let's examine this cluster a bit more by describing the cluster (the `$GUID` environment variable is already set for you so you can immediately describe your individual cluster):
-+
-[source,sh,role=execute]
-----
-podman ps
-----
-+
-.Sample Output
-[source,texinfo,subs="attributes"]
-----
-CONTAINER ID  IMAGE                        COMMAND           CREATED      STATUS      PORTS                 NAMES
-2dcfee9e50c4  docker.io/library/httpd:2.4  httpd-foreground  3 hours ago  Up 3 hours  0.0.0.0:8080->80/tcp  showroom-httpd
-----
-
-
-
-
-
-
-
-
-=== Lab Access
-
-The terminal window to your right is *already* logged into the lab environment as the `{ssh_user}` user via `ssh`. 
-All steps of this lab are to be completed as the `{ssh_user}` user.
+* link:https://github.com/rhpds/showroom_template_default.git[Default Showroom Template]
+* link:https://github.com/rhpds/showroom_theme_rh1.git[RH 1 Showroom Template]
+* link:https://github.com/rhpds/showroom_template_zero.git[Project Zero Showroom]
